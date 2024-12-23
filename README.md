@@ -1,6 +1,23 @@
 Hyuga - Yet Another Hy Language Server
 ======================================
 
+Ported from [hyuga-vscode-client](https://marketplace.visualstudio.com/items?itemName=sakuraiyuta.hyuga-vscode-client).
+
+## Install
+
+- [coc-marketplace](https://github.com/fannheyward/coc-marketplace)
+- [npm](https://www.npmjs.com/package/coc-hyuga)
+- vim:
+
+```vim
+" command line
+CocInstall coc-hyuga
+" or add the following code to your vimrc
+let g:coc_global_extensions = ['coc-hyuga', 'other coc-plugins']
+```
+
+---
+
 [![PyPI version](https://badge.fury.io/py/hyuga.svg)](https://badge.fury.io/py/hyuga)
 
 Forked from [hy-language-server](https://github.com/rinx/hy-language-server).

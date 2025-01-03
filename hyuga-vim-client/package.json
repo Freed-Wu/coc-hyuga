@@ -1,0 +1,64 @@
+{
+  "name": "coc-hyuga",
+  "version": "0.0.3",
+  "author": "Yuuta Sakurai",
+  "license": "MIT",
+  "publisher": "sakuraiyuta",
+  "repository": "https://github.com/sakuraiyuta/hyuga",
+  "displayName": "Hyuga Coc.nvim Client",
+  "description": "Hy LSP(hyuga) Client for (Neo)Vim",
+  "engines": {
+    "coc": "^0.0.82"
+  },
+  "keywords": [
+    "coc",
+    "hy",
+    "hylang",
+    "LSP"
+  ],
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:hy"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "hy",
+        "aliases": [
+          "Hy",
+          "hy"
+        ],
+        "extensions": [
+          ".hy"
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "patch": "scripts/patch.sh ../hyuga-vscode-client/src/*.ts",
+    "pre-release": "pnpm run package && pnpm vsce publish --no-dependencies --pre-release",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "prepack": "npm run patch && esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:coc.nvim --format=cjs --platform=node",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "coc.nvim": "^0.0.82",
+    "esbuild": "",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.3"
+  }
+}

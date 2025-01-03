@@ -1,0 +1,7 @@
+{
+    "extends": "../hyuga-vscode-client/tsconfig",
+    "compilerOptions": {
+        "outDir": "out",
+        "rootDir": "src"
+    }
+}

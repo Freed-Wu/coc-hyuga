@@ -1,7 +1,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+//# #if HAVE_VSCODE
 import * as vscode from 'vscode';
 import {LanguageClient} from "vscode-languageclient/node";
+//# #elif HAVE_COC_NVIM
+import * as vscode from 'coc.nvim';
+import {LanguageClient} from "coc.nvim";
+//# #endif
 
 let client: LanguageClient;
 // This method is called when your extension is activated
@@ -13,8 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   try {
     const serverOptions = {
-      command: "python3",
-      args: ["-m", "hyuga"]
+      command: "hyuga",
     };
     const clientOptions = {
       documentSelector: [
